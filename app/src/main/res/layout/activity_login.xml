@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/disp_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:focusable="true"
+        android:fontFamily="@font/leckerli_one"
+        android:text="@string/str_disp_logo"
+        android:textColor="@color/colorWhite"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/emma"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="@string/str_username"
+            android:textColor="@color/colorWhite"
+            android:layout_marginRight="12dp"
+            android:textSize="12sp"/>
+
+        <EditText
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/username_hint"
+            android:textColor="@color/colorWhite"
+            android:inputType="text"
+            android:backgroundTint="@color/colorWhite"
+            android:autofillHints="" tools:targetApi="o" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="@string/str_password"
+            android:textSize="12sp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginRight="12dp" />
+
+        <EditText
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/pwd_hint"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:inputType="textPassword"
+            android:backgroundTint="@color/colorWhite"
+            android:autofillHints="" />
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/str_login"
+        android:textColor="@color/colorAqua"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:background="@color/colorWhite"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/str_forgot_pwd"
+            android:textColor="@color/colorAqua"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:background="@color/colorWhite"
+            android:padding="2dp"
+            android:layout_marginEnd="11dp"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/str_cont_guest"
+            android:textColor="@color/colorAqua"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:background="@color/colorWhite"
+            android:padding="2dp"
+            android:focusable="true" />
+    </RelativeLayout>
+
+
+</LinearLayout>

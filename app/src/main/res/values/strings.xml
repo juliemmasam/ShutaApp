@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Shuta</string>
+    <string name="str_disp_logo">Skonga</string>
+    <string name="str_username">Username</string>
+    <string name="str_password">Password</string>
+    <string name="str_login">Login</string>
+    <string name="str_forgot_pwd">Forgot?</string>
+    <string name="str_cont_guest">Guest</string>
+    <string name="username_hint">username</string>
+    <string name="pwd_hint">....</string>
+</resources>
