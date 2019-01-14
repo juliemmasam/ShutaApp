@@ -9,19 +9,23 @@
     android:background="@drawable/background"
     tools:context=".LoginActivity">
 
+    <!--The Skonga logo gets displayed down here -->
     <TextView
         android:id="@+id/disp_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
-        android:focusable="true"
         android:fontFamily="@font/leckerli_one"
         android:text="@string/str_disp_logo"
         android:textColor="@color/colorWhite"
         android:textSize="50sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:padding="2dp"
+        android:textAlignment="center"/>
 
+
+    <!-- The image placeholder of the owner of the account -->
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_image"
@@ -33,6 +37,7 @@
         app:civ_border_color="#FF000000"
         android:layout_marginBottom="16dp"/>
 
+    <!-- The username fields follow here -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +62,7 @@
     </LinearLayout>
 
 
-
+    <!-- The Password fields follow after the username fields-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,6 +88,7 @@
     </LinearLayout>
 
 
+    <!-- The Login button gets its place down here-->
     <Button
         android:layout_width="120dp"
         android:layout_height="wrap_content"
@@ -94,6 +100,7 @@
         android:textAllCaps="false"
         android:background="@color/colorWhite"/>
 
+    <!-- Complete with the alternative fields to the thing-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
