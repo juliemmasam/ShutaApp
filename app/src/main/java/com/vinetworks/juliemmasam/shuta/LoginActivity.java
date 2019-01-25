@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             // this is where we can check if the entries are in the database
-                            
+
                         }
                     }).start();
                 }
