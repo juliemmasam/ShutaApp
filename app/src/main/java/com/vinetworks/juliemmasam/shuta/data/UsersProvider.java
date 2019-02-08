@@ -134,7 +134,7 @@ public class UsersProvider extends ContentProvider {
         return 0;
     }
 
-    
+
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values,
                       @Nullable String selection, @Nullable String[] selectionArgs) {
