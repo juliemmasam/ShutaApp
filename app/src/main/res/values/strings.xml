@@ -8,4 +8,7 @@
     <string name="str_cont_guest">Guest</string>
     <string name="username_hint">username</string>
     <string name="pwd_hint">....</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
