@@ -15,9 +15,9 @@ public class Administrator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_administrator);
 
-        addTeachers = findViewById(R.id.btn_register_teacher);
-        addStudents = findViewById(R.id.btn_register_student);
-        addCourses = findViewById(R.id.btn_register_course);
+        addTeachers = findViewById(R.id.btn_add_teacher);
+        addStudents = findViewById(R.id.btn_add_student);
+        addCourses = findViewById(R.id.btn_add_course);
 
         // Setting up the listeners
         addTeachers.setOnClickListener(new View.OnClickListener() {
