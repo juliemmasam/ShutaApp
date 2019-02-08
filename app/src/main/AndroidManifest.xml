@@ -24,7 +24,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RegisterTeachers" />
+        <activity android:name=".RegisterStudents" />
+        <activity android:name=".RegisterCourses" />
+        <activity android:name=".Administrator"
+                android:label="Skonga Admin">
+        </activity>
     </application>
 
 </manifest>

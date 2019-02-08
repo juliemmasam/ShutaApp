@@ -1,5 +1,6 @@
 package com.vinetworks.juliemmasam.shuta;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +15,7 @@ public class LoginActivity extends AppCompatActivity {
     // Initializing all the variables to keep track of them from the UI
     EditText txtUsername, pwdPassword;
     TextView lblNotification;
-    Button btnLogin;
+    Button btnLogin, btnAdmin;
 
 
     @Override
@@ -27,8 +28,10 @@ public class LoginActivity extends AppCompatActivity {
         lblNotification = findViewById(R.id.lbl_notification);
         pwdPassword = findViewById(R.id.pwdPassword);
         btnLogin = findViewById(R.id.btn_login);
+        btnAdmin = findViewById(R.id.btn_Admin);
 
 
+        // the listener for the login button
         btnLogin.setOnClickListener(new View.OnClickListener() {
             /**
              * the real use of this button is to got through a series of the following
@@ -44,19 +47,18 @@ public class LoginActivity extends AppCompatActivity {
             * */
             @Override
             public void onClick(View v) {
-                //Check if the fields are filled
-                if(txtUsername.getText() == null || pwdPassword.getText() == null){
-                    lblNotification.setText("One of the fields empty.");
-                    lblNotification.setVisibility(View.VISIBLE);
-                }else {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // this is where we can check if the entries are in the database
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
-                        }
-                    }).start();
-                }
+
+        // the listener for the admin button
+        btnAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), Administrator.class);
+                startActivity(intent);
             }
         });
     }

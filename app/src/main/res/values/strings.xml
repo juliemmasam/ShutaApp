@@ -4,6 +4,7 @@
     <string name="str_username">Username</string>
     <string name="str_password">Password</string>
     <string name="str_login">Login</string>
+    <string name="str_admin">Admin</string>
     <string name="str_forgot_pwd">Forgot?</string>
     <string name="str_cont_guest">Guest</string>
     <string name="username_hint">username</string>
@@ -11,4 +12,30 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <!--Strings for tabs-->
+    <string name="profile_tab">Profile</string>
+    <string name="courses_tab">Courses</string>
+    <string name="grades_tab">Grades</string>
+
+    <!--Strings for the profile view-->
+    <string name="profile_name">Name : </string>
+    <string name="profile_title">Title : </string>
+
+    <!--Additional Strings for the Register Activities-->
+    <string name="str_name_register">Name : </string>
+    <string name="str_username_register">Username : </string>
+    <string name="str_password_register">PassWd : </string>
+
+    <!--Additional Strings for the Course Register Activity-->
+    <string name="str_course_code_register">Code :</string>
+    <string name="str_course_name_register">Name :</string>
+
+    <!--Register button-->
+    <string name="str_register">Register</string>
+
+    <!--Administrator Strings-->
+    <string name="str_add_teacher">Add Teachers</string>
+    <string name="str_add_student">Add Students</string>
+    <string name="str_add_course">Add Courses</string>
 </resources>

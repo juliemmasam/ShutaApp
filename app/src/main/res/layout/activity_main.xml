@@ -30,25 +30,26 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/navigation_tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/colorWhite">
 
             <android.support.design.widget.TabItem
                 android:id="@+id/profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile" />
+                android:text="@string/profile_tab" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/courses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Courses"/>
+                android:text="@string/courses_tab"/>
 
             <android.support.design.widget.TabItem
                 android:id="@+id/grades"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Grades"/>
+                android:text="@string/grades_tab"/>
 
         </android.support.design.widget.TabLayout>
 
