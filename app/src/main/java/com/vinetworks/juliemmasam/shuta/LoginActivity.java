@@ -1,6 +1,8 @@
 package com.vinetworks.juliemmasam.shuta;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.vinetworks.juliemmasam.shuta.data.StudentsContract;
+import com.vinetworks.juliemmasam.shuta.data.UsersDbHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,9 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Instantiating the variables when launching the activity
-        txtUsername = findViewById(R.id.txtUsername);
-        lblNotification = findViewById(R.id.lbl_notification);
-        pwdPassword = findViewById(R.id.pwdPassword);
         btnLogin = findViewById(R.id.btn_login);
         btnAdmin = findViewById(R.id.btn_Admin);
 
@@ -47,11 +49,13 @@ public class LoginActivity extends AppCompatActivity {
             * */
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-
-                // Find out if the values entered on the EditText Views exist in the database for authentication
-                // If the values exit, set the value of the profile name on the Profile view of the application
-                startActivity(intent);
+                if(isAuthenticatedStudent()){
+                    // If the values exit, set the value of the profile name on the Profile view of the application
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(intent);
+                }else{
+                    // display the notification that they are not authenticated
+                }
             }
         });
 
@@ -64,6 +68,55 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void grantAcess(){
+        if(isAuthenticatedStudent()){
+            // start the activity for the students
+        }else if(isAuthenticatedTeacher()){
+            // start the activity for the teachers
+        }else{
+            // display the notification notifying that the information entered is wrong
+        }
+    }
+
+    public boolean isAuthenticatedStudent(){
+        // Instantiate the views before getting their values
+        txtUsername = findViewById(R.id.txtUsername);
+        lblNotification = findViewById(R.id.lbl_notification);
+        pwdPassword = findViewById(R.id.pwdPassword);
+
+        // instantiate the value of the existence of the user in the database
+        boolean userExists = false;
+
+        // find the user in the database
+        UsersDbHelper helper = new UsersDbHelper(getBaseContext());
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        // Query parameters
+        String tableName = StudentsContract.StudentEntry.TABLE_NAME;
+        String[] columns = {StudentsContract.StudentEntry.COLUMN_USERNAME, StudentsContract.StudentEntry.COLUMN_PASSWORD};
+        String selection = "StudentsContract.StudentEntry.COLUMN_USERNAME = ? AND StudentsContract.StudentEntry.COLUMN_PASSWORD = ?";
+        String[] selectionArgs = {txtUsername.getText().toString(),pwdPassword.getText().toString()};
+
+        // Create the cursor from the query parameters
+        Cursor cursor = db.query(tableName, columns, selection, selectionArgs, null, null, null);
+
+        // use this
+        if(cursor != null){
+            userExists = true;
+        }
+
+        return userExists;
+    }
+
+
+    public boolean isAuthenticatedTeacher(){
+        boolean isAuthenticatedTeacher = false;
+
+
+
+        return isAuthenticatedTeacher;
     }
 
 }
