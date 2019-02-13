@@ -69,12 +69,12 @@ public class LoginActivity extends AppCompatActivity {
     // A method to grant access to the user
 
     public void grantAccess(){
-        if(!isAuthenticatedStudent()){
+        if(isAuthenticatedStudent() == true){
             // start the activity for the students
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             startActivity(intent);
 
-        }else if(!isAuthenticatedTeacher()){
+        }else if(isAuthenticatedTeacher() == true){
             // start the activity for the teachers
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             startActivity(intent);
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             lblNotification.setVisibility(View.VISIBLE);
         }
     }
-
+    
 
     // the code to check whether the student exists in the database or not
 
@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         pwdPassword = findViewById(R.id.pwdPassword);
 
         // instantiate the value of the existence of the user in the database
-        boolean userExists = false;
+        boolean userExists;
 
         // find the user in the database
         UsersDbHelper helper = new UsersDbHelper(getBaseContext());
@@ -113,6 +113,8 @@ public class LoginActivity extends AppCompatActivity {
         // use this
         if(cursor != null){
             userExists = true;
+        }else{
+            userExists = false;
         }
 
         return userExists;
@@ -128,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
         pwdPassword = findViewById(R.id.pwdPassword);
 
         // instantiate the value of the existence of the user in the database
-        boolean isAuthenticatedTeacher = false;
+        boolean isAuthenticatedTeacher;
 
         // find the user in the database
         UsersDbHelper helper = new UsersDbHelper(getBaseContext());
@@ -146,6 +148,8 @@ public class LoginActivity extends AppCompatActivity {
         // use this
         if(cursor != null){
             isAuthenticatedTeacher = true;
+        }else{
+            isAuthenticatedTeacher = false;
         }
 
         return isAuthenticatedTeacher;

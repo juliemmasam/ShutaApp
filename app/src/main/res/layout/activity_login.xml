@@ -42,7 +42,9 @@
         android:id="@+id/lbl_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold" />
 
     <!-- The username fields follow here -->
     <LinearLayout
