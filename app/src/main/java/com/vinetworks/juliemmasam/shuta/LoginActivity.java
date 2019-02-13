@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vinetworks.juliemmasam.shuta.data.StudentsContract;
+import com.vinetworks.juliemmasam.shuta.data.TeachersContract;
 import com.vinetworks.juliemmasam.shuta.data.UsersDbHelper;
 
 public class LoginActivity extends AppCompatActivity {
@@ -49,13 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             * */
             @Override
             public void onClick(View v) {
-                if(isAuthenticatedStudent()){
-                    // If the values exit, set the value of the profile name on the Profile view of the application
-                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(intent);
-                }else{
-                    // display the notification that they are not authenticated
-                }
+               grantAccess();
             }
         });
 
@@ -70,15 +65,28 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void grantAcess(){
-        if(isAuthenticatedStudent()){
+
+    // A method to grant access to the user
+
+    public void grantAccess(){
+        if(!isAuthenticatedStudent()){
             // start the activity for the students
-        }else if(isAuthenticatedTeacher()){
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(intent);
+
+        }else if(!isAuthenticatedTeacher()){
             // start the activity for the teachers
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(intent);
         }else{
             // display the notification notifying that the information entered is wrong
+            lblNotification.setText("You are not a registered user");
+            lblNotification.setVisibility(View.VISIBLE);
         }
     }
+
+
+    // the code to check whether the student exists in the database or not
 
     public boolean isAuthenticatedStudent(){
         // Instantiate the views before getting their values
@@ -96,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
         // Query parameters
         String tableName = StudentsContract.StudentEntry.TABLE_NAME;
         String[] columns = {StudentsContract.StudentEntry.COLUMN_USERNAME, StudentsContract.StudentEntry.COLUMN_PASSWORD};
-        String selection = "StudentsContract.StudentEntry.COLUMN_USERNAME = ? AND StudentsContract.StudentEntry.COLUMN_PASSWORD = ?";
+        String selection = StudentsContract.StudentEntry.COLUMN_USERNAME + " = ? AND " + StudentsContract.StudentEntry.COLUMN_PASSWORD + " = ?";
         String[] selectionArgs = {txtUsername.getText().toString(),pwdPassword.getText().toString()};
 
         // Create the cursor from the query parameters
@@ -111,10 +119,34 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    // the code to check whether the teacher exists in the database
+
     public boolean isAuthenticatedTeacher(){
+        // Instantiate the views before getting their values
+        txtUsername = findViewById(R.id.txtUsername);
+        lblNotification = findViewById(R.id.lbl_notification);
+        pwdPassword = findViewById(R.id.pwdPassword);
+
+        // instantiate the value of the existence of the user in the database
         boolean isAuthenticatedTeacher = false;
 
+        // find the user in the database
+        UsersDbHelper helper = new UsersDbHelper(getBaseContext());
+        SQLiteDatabase db = helper.getReadableDatabase();
 
+        // Query parameters
+        String tableName = StudentsContract.StudentEntry.TABLE_NAME;
+        String[] columns = {TeachersContract.TeachersEntry.COLUMN_USERNAME, TeachersContract.TeachersEntry.COLUMN_PASSWORD};
+        String selection = TeachersContract.TeachersEntry.COLUMN_USERNAME + " = ? AND " + TeachersContract.TeachersEntry.COLUMN_PASSWORD + " = ?";
+        String[] selectionArgs = {txtUsername.getText().toString(),pwdPassword.getText().toString()};
+
+        // Create the cursor from the query parameters
+        Cursor cursor = db.query(tableName, columns, selection, selectionArgs, null, null, null);
+
+        // use this
+        if(cursor != null){
+            isAuthenticatedTeacher = true;
+        }
 
         return isAuthenticatedTeacher;
     }
