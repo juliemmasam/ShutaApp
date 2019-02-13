@@ -48,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
+
+                // Find out if the values entered on the EditText Views exist in the database for authentication
+                // If the values exit, set the value of the profile name on the Profile view of the application
                 startActivity(intent);
             }
         });

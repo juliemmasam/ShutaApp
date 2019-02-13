@@ -1,10 +1,17 @@
 package com.vinetworks.juliemmasam.shuta;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.vinetworks.juliemmasam.shuta.data.StudentsContract;
+import com.vinetworks.juliemmasam.shuta.data.UsersDbHelper;
 
 public class RegisterStudents extends AppCompatActivity {
 
@@ -36,10 +43,23 @@ public class RegisterStudents extends AppCompatActivity {
 
     private void addStudentToDatabase(){
         // Retrieve the input values
-        String strStudentName = studentName.toString().trim();
-        String strStudentUsername = studentUsername.toString().trim();
-        String strStudentPwd = studentPassword.toString().trim();
+        String strStudentName = studentName.getText().toString().trim();
+        String strStudentUsername = studentUsername.getText().toString().trim();
+        String strStudentPwd = studentPassword.getText().toString().trim();
 
         // Add the values to the database.
+        UsersDbHelper dbHelper = new UsersDbHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues studentValues = new ContentValues();
+        studentValues.put(StudentsContract.StudentEntry.COLUMN_NAME, strStudentName);
+        studentValues.put(StudentsContract.StudentEntry.COLUMN_USERNAME, strStudentUsername);
+        studentValues.put(StudentsContract.StudentEntry.COLUMN_PASSWORD, strStudentPwd);
+
+        long rowid = db.insert(StudentsContract.StudentEntry.TABLE_NAME, null, studentValues);
+        Log.i("Adding", "addStudentToDatabase: " + rowid);
+
+
+        Toast.makeText(getBaseContext(), "Values successfully added", Toast.LENGTH_LONG).show();
     }
 }

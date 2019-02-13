@@ -12,9 +12,9 @@ public final class CourseContract {
     static final String PATH_COURSES_ID = "courses/#";
 
 
-    public final class CourseEntry implements BaseColumns{
+    public static final class CourseEntry implements BaseColumns{
 
-        public final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_COURSES);
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_COURSES);
 
         // table name
         public static final String TABLE_NAME = "courses";

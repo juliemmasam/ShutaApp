@@ -1,10 +1,18 @@
 package com.vinetworks.juliemmasam.shuta;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.vinetworks.juliemmasam.shuta.data.StudentsContract;
+import com.vinetworks.juliemmasam.shuta.data.TeachersContract;
+import com.vinetworks.juliemmasam.shuta.data.UsersDbHelper;
 
 public class RegisterTeachers extends AppCompatActivity {
 
@@ -36,10 +44,22 @@ public class RegisterTeachers extends AppCompatActivity {
 
     private void addTeacherToDatabase(){
         // Retrieve the input values
-        String strTeacherName = teacherName.toString().trim();
-        String strTeacherUsername = teacherUsername.toString().trim();
-        String strTeacherPwd = teacherPassword.toString().trim();
+        String strTeacherName = teacherName.getText().toString().trim();
+        String strTeacherUsername = teacherUsername.getText().toString().trim();
+        String strTeacherPwd = teacherPassword.getText().toString().trim();
 
         // Add the values to the database.
+        UsersDbHelper dbHelper = new UsersDbHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues teacherValues = new ContentValues();
+        teacherValues.put(TeachersContract.TeachersEntry.COLUMN_NAME, strTeacherName);
+        teacherValues.put(TeachersContract.TeachersEntry.COLUMN_USERNAME, strTeacherUsername);
+        teacherValues.put(TeachersContract.TeachersEntry.COLUMN_PASSWORD, strTeacherPwd);
+
+        long rowid = db.insert(TeachersContract.TeachersEntry.TABLE_NAME, null, teacherValues);
+        Log.i("Adding Teachers", "addTeacherToDatabase: " + rowid);
+
+        Toast.makeText(getBaseContext(), "Values successfully added", Toast.LENGTH_LONG).show();
     }
 }
