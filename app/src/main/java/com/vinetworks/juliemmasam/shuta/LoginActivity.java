@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             lblNotification.setVisibility(View.VISIBLE);
         }
     }
-    
+
 
     // the code to check whether the student exists in the database or not
 
@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         Cursor cursor = db.query(tableName, columns, selection, selectionArgs, null, null, null);
 
         // use this
-        if(cursor != null){
+        if(cursor.moveToFirst()){
             userExists = true;
         }else{
             userExists = false;
@@ -137,16 +137,16 @@ public class LoginActivity extends AppCompatActivity {
         SQLiteDatabase db = helper.getReadableDatabase();
 
         // Query parameters
-        String tableName = StudentsContract.StudentEntry.TABLE_NAME;
+        String tableName = TeachersContract.TeachersEntry.TABLE_NAME;
         String[] columns = {TeachersContract.TeachersEntry.COLUMN_USERNAME, TeachersContract.TeachersEntry.COLUMN_PASSWORD};
         String selection = TeachersContract.TeachersEntry.COLUMN_USERNAME + " = ? AND " + TeachersContract.TeachersEntry.COLUMN_PASSWORD + " = ?";
-        String[] selectionArgs = {txtUsername.getText().toString(),pwdPassword.getText().toString()};
+        String[] selectionArgs = {txtUsername.getText().toString(), pwdPassword.getText().toString()};
 
         // Create the cursor from the query parameters
         Cursor cursor = db.query(tableName, columns, selection, selectionArgs, null, null, null);
 
         // use this
-        if(cursor != null){
+        if(cursor.moveToFirst()){
             isAuthenticatedTeacher = true;
         }else{
             isAuthenticatedTeacher = false;
