@@ -38,4 +38,5 @@
     <string name="str_add_teacher">Add Teachers</string>
     <string name="str_add_student">Add Students</string>
     <string name="str_add_course">Add Courses</string>
+    <string name="str_delete_records">Delete Records</string>
 </resources>

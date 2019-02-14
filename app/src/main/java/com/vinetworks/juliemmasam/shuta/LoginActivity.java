@@ -36,18 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // the listener for the login button
         btnLogin.setOnClickListener(new View.OnClickListener() {
-            /**
-             * the real use of this button is to got through a series of the following
-             * 1. check if the username exists in the database
-             * 2. check whether or not the password exists in the database along with the username
-             * 3. if the user exists, it should check the status of the user. ie whether the user
-             *  is the teacher or student then decide what to open after that
-             * 4. If either the user does not exist or the password is incorrect, the user should
-             *  be notified by displaying the toast message
-             *
-             *
-             *  NB: Right now check whether the fields are filled or empty
-            * */
+
             @Override
             public void onClick(View v) {
                grantAccess();
@@ -72,15 +61,19 @@ public class LoginActivity extends AppCompatActivity {
         if(isAuthenticatedStudent() == true){
             // start the activity for the students
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            intent.putExtra("Username", txtUsername.getText().toString());
+            intent.putExtra("Status", "Student");
             startActivity(intent);
 
         }else if(isAuthenticatedTeacher() == true){
             // start the activity for the teachers
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            intent.putExtra("Usernname", txtUsername.getText().toString());
+            intent.putExtra("Status", "Teacher");
             startActivity(intent);
         }else{
             // display the notification notifying that the information entered is wrong
-            lblNotification.setText("You are not a registered user");
+            lblNotification.setText("You are not a registered user!!");
             lblNotification.setVisibility(View.VISIBLE);
         }
     }
@@ -97,20 +90,25 @@ public class LoginActivity extends AppCompatActivity {
         // instantiate the value of the existence of the user in the database
         boolean userExists;
 
-        // find the user in the database
+        // Get Access to the database
         UsersDbHelper helper = new UsersDbHelper(getBaseContext());
         SQLiteDatabase db = helper.getReadableDatabase();
 
         // Query parameters
         String tableName = StudentsContract.StudentEntry.TABLE_NAME;
-        String[] columns = {StudentsContract.StudentEntry.COLUMN_USERNAME, StudentsContract.StudentEntry.COLUMN_PASSWORD};
-        String selection = StudentsContract.StudentEntry.COLUMN_USERNAME + " = ? AND " + StudentsContract.StudentEntry.COLUMN_PASSWORD + " = ?";
+
+        String[] columns = {StudentsContract.StudentEntry.COLUMN_USERNAME,
+                            StudentsContract.StudentEntry.COLUMN_PASSWORD};
+
+        String selection = StudentsContract.StudentEntry.COLUMN_USERNAME + " = ? AND " +
+                            StudentsContract.StudentEntry.COLUMN_PASSWORD + " = ?";
+
         String[] selectionArgs = {txtUsername.getText().toString(),pwdPassword.getText().toString()};
 
         // Create the cursor from the query parameters
         Cursor cursor = db.query(tableName, columns, selection, selectionArgs, null, null, null);
 
-        // use this
+        // use this to check for user's existence in the database
         if(cursor.moveToFirst()){
             userExists = true;
         }else{
@@ -132,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
         // instantiate the value of the existence of the user in the database
         boolean isAuthenticatedTeacher;
 
-        // find the user in the database
+        // Get Access to the database
         UsersDbHelper helper = new UsersDbHelper(getBaseContext());
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -145,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
         // Create the cursor from the query parameters
         Cursor cursor = db.query(tableName, columns, selection, selectionArgs, null, null, null);
 
-        // use this
+        // use this to check for user's existence in the database
         if(cursor.moveToFirst()){
             isAuthenticatedTeacher = true;
         }else{

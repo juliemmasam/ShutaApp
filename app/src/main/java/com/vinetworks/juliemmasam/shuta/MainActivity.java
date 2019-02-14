@@ -1,5 +1,6 @@
 package com.vinetworks.juliemmasam.shuta;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -41,19 +42,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager =  findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = findViewById(R.id.navigation_tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        // Retrieve the values from the intent that calls the activity
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("Username");
+        String title = intent.getStringExtra("Status");
+
+        // start the profile fragment
+        ProfileFragment profileFragment = new ProfileFragment();
+        profileFragment.setUserValues(username, title);
     }
 
 
