@@ -137,7 +137,10 @@ public class LoginActivity extends AppCompatActivity {
         // Query parameters
         String tableName = TeachersContract.TeachersEntry.TABLE_NAME;
         String[] columns = {TeachersContract.TeachersEntry.COLUMN_USERNAME, TeachersContract.TeachersEntry.COLUMN_PASSWORD};
-        String selection = TeachersContract.TeachersEntry.COLUMN_USERNAME + " = ? AND " + TeachersContract.TeachersEntry.COLUMN_PASSWORD + " = ?";
+
+        String selection = TeachersContract.TeachersEntry.COLUMN_USERNAME + " = ? AND " +
+                            TeachersContract.TeachersEntry.COLUMN_PASSWORD + " = ?";
+
         String[] selectionArgs = {txtUsername.getText().toString(), pwdPassword.getText().toString()};
 
         // Create the cursor from the query parameters
